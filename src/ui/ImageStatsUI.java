@@ -9,6 +9,8 @@ package ui;
 import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -42,6 +44,25 @@ public class ImageStatsUI extends javax.swing.JFrame {
                     setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 }
             }
+        });
+        
+        
+        scrollPane.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener(){
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                BufferedImage subSet = createImage(scrollPane, true);
+                
+            }
+            
+        });
+        
+        scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                BufferedImage subSet = createImage(scrollPane, true);
+
+            }
+            
         });
         
     }
