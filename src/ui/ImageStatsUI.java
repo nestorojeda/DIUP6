@@ -66,6 +66,9 @@ public class ImageStatsUI extends javax.swing.JFrame {
         redminOutput = new javax.swing.JTextField();
         redavgOutput = new javax.swing.JTextField();
         redmaxOutput = new javax.swing.JTextField();
+        authors = new javax.swing.JLabel();
+        width = new javax.swing.JLabel();
+        height = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -106,7 +109,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         redavgOutput.setEditable(false);
 
-        redmaxOutput.setEnabled(false);
+        redmaxOutput.setEditable(false);
 
         javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
         statsPanel.setLayout(statsPanelLayout);
@@ -151,6 +154,12 @@ public class ImageStatsUI extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        authors.setText("Daniel Delgado Perera y Néstor Ojeda González");
+
+        width.setText("Anchura");
+
+        height.setText("Altura:");
+
         fileMenu.setText("Archivo");
 
         openMenuItem.setText("Abrir");
@@ -173,7 +182,13 @@ public class ImageStatsUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
-                    .addComponent(statsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(statsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(width, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(authors)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -182,8 +197,13 @@ public class ImageStatsUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(statsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(authors)
+                    .addComponent(width)
+                    .addComponent(height))
+                .addGap(5, 5, 5))
         );
 
         pack();
@@ -202,6 +222,9 @@ public class ImageStatsUI extends javax.swing.JFrame {
                 imagePanel.setImage(file);
                 System.out.println("Opening: " + file.getName() + "." );
                 loaded = true;
+                width.setText("Anchura: " + String.valueOf(imagePanel.getImageWidth()));
+                height.setText("Altura: " + String.valueOf(imagePanel.getImageHeight()));
+
                 this.pack();
             }
         } else {
@@ -279,9 +302,11 @@ public class ImageStatsUI extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel authors;
     private javax.swing.JLabel avgredLabel;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JLabel height;
     private ui.ImagePanel imagePanel;
     private javax.swing.JLabel maxredLabel;
     private javax.swing.JMenuBar menuBar;
@@ -293,6 +318,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
     private javax.swing.JTextField redminOutput;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JPanel statsPanel;
+    private javax.swing.JLabel width;
     // End of variables declaration//GEN-END:variables
 
     private void layoutComponent(Component component) {

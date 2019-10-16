@@ -53,6 +53,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="scrollPane" pref="780" max="32767" attributes="0"/>
                   <Component id="statsPanel" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="width" min="-2" pref="133" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="height" min="-2" pref="133" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="authors" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -64,8 +71,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="statsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="scrollPane" pref="419" max="32767" attributes="0"/>
+              <Component id="scrollPane" min="-2" pref="409" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="authors" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="width" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="height" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -199,10 +212,25 @@
         </Component>
         <Component class="javax.swing.JTextField" name="redmaxOutput">
           <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="authors">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Daniel Delgado Perera y N&#xe9;stor Ojeda Gonz&#xe1;lez"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="width">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Anchura"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="height">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Altura:"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
