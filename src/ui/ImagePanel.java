@@ -5,6 +5,7 @@
  */
 package ui;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,16 +17,19 @@ import javax.imageio.ImageIO;
  */
 public class ImagePanel extends javax.swing.JPanel {
     private BufferedImage img;
+    private boolean loaded = false;
 
     public ImagePanel(){
         initComponents();
- 
-    }
+     }
 
        @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawImage(img, 0, 0, this);
+        if(!loaded)g.drawImage(img, 0, 0, this);
+        else g.drawImage(img, 0, 0,img.getWidth(), img.getHeight(), this);
+        
+        
     }
 
    
@@ -59,14 +63,15 @@ public class ImagePanel extends javax.swing.JPanel {
     void setImage(File file) {
         try{
             img =  ImageIO.read(file);
-            this.setSize( img.getWidth(), img.getHeight());
-            
+            this.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+            loaded = true;
+          
         } catch (Exception e){
             System.out.print(e);
         }
-        
         this.repaint();
     }
+   
     
     
     int getImageWidth(){

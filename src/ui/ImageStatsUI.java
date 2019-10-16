@@ -50,33 +50,35 @@ public class ImageStatsUI extends javax.swing.JFrame {
     private void initComponents() {
 
         fileChooser = new javax.swing.JFileChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        imagePanel1 = new ui.ImagePanel();
+        scrollPane = new javax.swing.JScrollPane();
+        imagePanel = new ui.ImagePanel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Estadísticas de imagen");
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
-        jScrollPane1.setOpaque(false);
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 600));
+        scrollPane.setToolTipText("");
+        scrollPane.setOpaque(false);
+        scrollPane.setPreferredSize(new java.awt.Dimension(800, 600));
 
-        imagePanel1.setName(""); // NOI18N
+        imagePanel.setName("Imagen"); // NOI18N
 
-        javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
-        imagePanel1.setLayout(imagePanel1Layout);
-        imagePanel1Layout.setHorizontalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
+        imagePanel.setLayout(imagePanelLayout);
+        imagePanelLayout.setHorizontalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1313, Short.MAX_VALUE)
         );
-        imagePanel1Layout.setVerticalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+        imagePanelLayout.setVerticalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 840, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(imagePanel1);
+        scrollPane.setViewportView(imagePanel);
 
         fileMenu.setText("Archivo");
 
@@ -98,14 +100,14 @@ public class ImageStatsUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1315, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -120,12 +122,10 @@ public class ImageStatsUI extends javax.swing.JFrame {
             File file = fileChooser.getSelectedFile();
             if(!"jpg".equals(getExtension(file))){
                 warningDialog("Debe ser un archivo .jpg");
-                openMenuItemActionPerformed(evt);
-                
+                openMenuItemActionPerformed(evt);              
             }else{
-                imagePanel1.setImage(file);
+                imagePanel.setImage(file);
                 System.out.println("Opening: " + file.getName() + "." );
-                jScrollPane1.setSize(imagePanel1.getImageWidth(), imagePanel1.getImageHeight() );
                 loaded = true;
                 this.pack();
             }
@@ -162,10 +162,8 @@ public class ImageStatsUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ImageStatsUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ImageStatsUI().setVisible(true);
         });
     }
     
@@ -192,9 +190,9 @@ public class ImageStatsUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenu fileMenu;
-    private ui.ImagePanel imagePanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private ui.ImagePanel imagePanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 }
