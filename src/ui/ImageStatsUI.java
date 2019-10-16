@@ -5,9 +5,19 @@
  */
 package ui;
 
+
+import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.CellRendererPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -52,14 +62,13 @@ public class ImageStatsUI extends javax.swing.JFrame {
         fileChooser = new javax.swing.JFileChooser();
         scrollPane = new javax.swing.JScrollPane();
         imagePanel = new ui.ImagePanel();
+        statsPanel = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Estadísticas de imagen");
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        setResizable(false);
 
         scrollPane.setToolTipText("");
         scrollPane.setOpaque(false);
@@ -79,6 +88,19 @@ public class ImageStatsUI extends javax.swing.JFrame {
         );
 
         scrollPane.setViewportView(imagePanel);
+
+        statsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
+        statsPanel.setLayout(statsPanelLayout);
+        statsPanelLayout.setHorizontalGroup(
+            statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 778, Short.MAX_VALUE)
+        );
+        statsPanelLayout.setVerticalGroup(
+            statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         fileMenu.setText("Archivo");
 
@@ -100,14 +122,18 @@ public class ImageStatsUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1315, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addComponent(statsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
+                .addComponent(statsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -185,6 +211,26 @@ public class ImageStatsUI extends javax.swing.JFrame {
        return extension;
     }
     
+   
+  
+    public BufferedImage createImage(Component component, boolean visible){
+        if (visible) {
+            BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = (Graphics2D) img.getGraphics();
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            component.paintAll(g2d);
+            return img;
+        } else {
+            component.setSize(component.getPreferredSize());
+            layoutComponent(component);
+            BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TRANSLUCENT);
+            CellRendererPane crp = new CellRendererPane();
+            crp.add(component);
+            crp.paintComponent(img.createGraphics(), component, crp, component.getBounds());
+            return img;
+        }
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -194,5 +240,10 @@ public class ImageStatsUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JPanel statsPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void layoutComponent(Component component) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
