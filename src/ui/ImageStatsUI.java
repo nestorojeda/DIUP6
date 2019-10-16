@@ -6,7 +6,9 @@
 package ui;
 
 
+import core.ImageStats;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.AdjustmentEvent;
@@ -46,12 +48,25 @@ public class ImageStatsUI extends javax.swing.JFrame {
             }
         });
         
+   
         
         scrollPane.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener(){
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
-                BufferedImage subSet = createImage(scrollPane, true);
+                System.out.println("Log: Detectado cambio horizontal");
+                if(loaded){
+                    BufferedImage subSet = createImage(scrollPane);
+                    ImageStats is = new ImageStats();
+                    is.calculateStats(ImageStats.toMat(subSet));
+                    
+                    int[] max = is.getMax();
+                    int[] min = is.getMin();            
+                    int[] avg = is.getAverage();
                 
+                    redmaxOutput.setText(String.valueOf(max[0]));
+                    redminOutput.setText(String.valueOf(min[0]));
+                    redavgOutput.setText(String.valueOf(avg[0]));
+                }                              
             }
             
         });
@@ -59,10 +74,21 @@ public class ImageStatsUI extends javax.swing.JFrame {
         scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
-                BufferedImage subSet = createImage(scrollPane, true);
-
+                System.out.println("Log: Detectado cambio vertical");
+                if(loaded){
+                    BufferedImage subSet = createImage(scrollPane);
+                    ImageStats is = new ImageStats();
+                    is.calculateStats(ImageStats.toMat(subSet));
+                    
+                    int[] max = is.getMax();
+                    int[] min = is.getMin();            
+                    int[] avg = is.getAverage();
+                
+                    redmaxOutput.setText(String.valueOf(max[0]));
+                    redminOutput.setText(String.valueOf(min[0]));
+                    redavgOutput.setText(String.valueOf(avg[0]));
+                }
             }
-            
         });
         
     }
@@ -241,7 +267,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
                 openMenuItemActionPerformed(evt);              
             }else{
                 imagePanel.setImage(file);
-                System.out.println("Opening: " + file.getName() + "." );
+                System.out.println("Log: abriendo " + file.getName() + "." );
                 loaded = true;
                 width.setText("Anchura: " + String.valueOf(imagePanel.getImageWidth()));
                 height.setText("Altura: " + String.valueOf(imagePanel.getImageHeight()));
@@ -299,25 +325,13 @@ public class ImageStatsUI extends javax.swing.JFrame {
         }  
        return extension;
     }
-    
    
   
-    public BufferedImage createImage(Component component, boolean visible){
-        if (visible) {
-            BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
-            Graphics2D g2d = (Graphics2D) img.getGraphics();
-            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    public BufferedImage createImage(Component component){
+            BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+            Graphics g2d =  img.getGraphics();
             component.paintAll(g2d);
             return img;
-        } else {
-            component.setSize(component.getPreferredSize());
-            layoutComponent(component);
-            BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TRANSLUCENT);
-            CellRendererPane crp = new CellRendererPane();
-            crp.add(component);
-            crp.paintComponent(img.createGraphics(), component, crp, component.getBounds());
-            return img;
-        }
     }
     
     
@@ -342,7 +356,5 @@ public class ImageStatsUI extends javax.swing.JFrame {
     private javax.swing.JLabel width;
     // End of variables declaration//GEN-END:variables
 
-    private void layoutComponent(Component component) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 }

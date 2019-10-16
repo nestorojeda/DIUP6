@@ -1,14 +1,15 @@
 package core;
 
-import java.awt.Dimension;
-import java.awt.Point;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
 import org.opencv.core.Core;
 import static org.opencv.core.Core.mean;
 import static org.opencv.core.Core.minMaxLoc;
 import static org.opencv.core.Core.split;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 
 public class ImageStats {
@@ -17,11 +18,15 @@ public class ImageStats {
     private final int GREEN = 1;
     private final int RED = 2;
 
-    private final int[] RGB = {RED, GREEN, BLUE};
+    public final int[] RGB = {RED, GREEN, BLUE};
 
     private int[] max = new int[3];
     private int[] min = new int[3];
     private int[] average = new int[3];
+    
+     static {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    }
 
     public int[] getMax() {
         return max;
@@ -34,13 +39,16 @@ public class ImageStats {
     public int[] getAverage() {
         return average;
     }
+    
+     public static Mat toMat(BufferedImage bufferedImage) {
+        Mat mat = new Mat(bufferedImage.getHeight(), bufferedImage.getWidth(), CvType.CV_8UC3);
+        byte[] data = ((DataBufferByte) bufferedImage.getRaster().getDataBuffer()).getData();
+        mat.put(0, 0, data);
+        return mat;
+    }
 
-    public void calculaEstadisticas(Mat imagenColor, Point esqSupIzda,
-                                    Dimension dimVista) {
+    public void calculateStats(Mat subImage) {
 
-        // crea la subimagen correspondiente al viewport
-        Mat subImage = new Mat(imagenColor, new Rect(esqSupIzda.x, esqSupIzda.y,
-                dimVista.width, dimVista.height));
 
         // separa los tres canales de la subimagen BGR
         ArrayList<Mat> rgb = new ArrayList<>();
