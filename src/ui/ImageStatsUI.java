@@ -52,7 +52,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
         });
         
         scrollPane.getViewport().addChangeListener((ChangeEvent e) -> {
-            System.out.println("Log: Detectado cambio en el Viewport" + e.toString());
+            System.out.println("Log: Detectado cambio en el Viewport");
             if(loaded) updateValues();
         });
         
