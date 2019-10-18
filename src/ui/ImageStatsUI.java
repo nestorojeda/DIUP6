@@ -55,17 +55,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 System.out.println("Log: Detectado cambio horizontal");
                 if(loaded){
-                    BufferedImage subSet = createImage(scrollPane);
-                    ImageStats is = new ImageStats();
-                    is.calculateStats(ImageStats.toMat(subSet));
-                    
-                    int[] max = is.getMax();
-                    int[] min = is.getMin();            
-                    int[] avg = is.getAverage();
-                
-                    redmaxOutput.setText(String.valueOf(max[0]));
-                    redminOutput.setText(String.valueOf(min[0]));
-                    redavgOutput.setText(String.valueOf(avg[0]));
+                    updateValues();
                 }                              
             }
             
@@ -76,17 +66,8 @@ public class ImageStatsUI extends javax.swing.JFrame {
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 System.out.println("Log: Detectado cambio vertical");
                 if(loaded){
-                    BufferedImage subSet = createImage(scrollPane);
-                    ImageStats is = new ImageStats();
-                    is.calculateStats(ImageStats.toMat(subSet));
-                    
-                    int[] max = is.getMax();
-                    int[] min = is.getMin();            
-                    int[] avg = is.getAverage();
-                
-                    redmaxOutput.setText(String.valueOf(max[0]));
-                    redminOutput.setText(String.valueOf(min[0]));
-                    redavgOutput.setText(String.valueOf(avg[0]));
+                    updateValues();
+
                 }
             }
         });
@@ -107,12 +88,26 @@ public class ImageStatsUI extends javax.swing.JFrame {
         imagePanel = new ui.ImagePanel();
         statsPanel = new javax.swing.JPanel();
         redLabel = new javax.swing.JLabel();
-        minredLabel = new javax.swing.JLabel();
-        maxredLabel = new javax.swing.JLabel();
-        avgredLabel = new javax.swing.JLabel();
+        minLabel = new javax.swing.JLabel();
+        maxLabel = new javax.swing.JLabel();
+        avgLabel = new javax.swing.JLabel();
         redminOutput = new javax.swing.JTextField();
         redavgOutput = new javax.swing.JTextField();
         redmaxOutput = new javax.swing.JTextField();
+        blueLabel = new javax.swing.JLabel();
+        blueminOutput = new javax.swing.JTextField();
+        blueavgOutput = new javax.swing.JTextField();
+        bluemaxOutput = new javax.swing.JTextField();
+        maxLabel1 = new javax.swing.JLabel();
+        avgLabel1 = new javax.swing.JLabel();
+        minLabel1 = new javax.swing.JLabel();
+        greenLabel = new javax.swing.JLabel();
+        greenminOutput = new javax.swing.JTextField();
+        greenavgOutput = new javax.swing.JTextField();
+        greenmaxOutput = new javax.swing.JTextField();
+        maxLabel2 = new javax.swing.JLabel();
+        avgLabel2 = new javax.swing.JLabel();
+        minLabel2 = new javax.swing.JLabel();
         authors = new javax.swing.JLabel();
         width = new javax.swing.JLabel();
         height = new javax.swing.JLabel();
@@ -146,17 +141,45 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         redLabel.setText("Rojo");
 
-        minredLabel.setText("Min.");
+        minLabel.setText("Min.");
 
-        maxredLabel.setText("Max.");
+        maxLabel.setText("Max.");
 
-        avgredLabel.setText("Avg.");
+        avgLabel.setText("Avg.");
 
         redminOutput.setEditable(false);
 
         redavgOutput.setEditable(false);
 
         redmaxOutput.setEditable(false);
+
+        blueLabel.setText("Azul");
+
+        blueminOutput.setEditable(false);
+
+        blueavgOutput.setEditable(false);
+
+        bluemaxOutput.setEditable(false);
+
+        maxLabel1.setText("Max.");
+
+        avgLabel1.setText("Avg.");
+
+        minLabel1.setText("Min.");
+
+        greenLabel.setText("Verde");
+
+        greenminOutput.setEditable(false);
+
+        greenavgOutput.setEditable(false);
+
+        greenmaxOutput.setEditable(false);
+
+        maxLabel2.setText("Max.");
+
+        avgLabel2.setText("Avg.");
+
+        minLabel2.setText("Min.");
 
         javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
         statsPanel.setLayout(statsPanelLayout);
@@ -167,37 +190,99 @@ public class ImageStatsUI extends javax.swing.JFrame {
                 .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statsPanelLayout.createSequentialGroup()
                         .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(maxredLabel)
-                            .addComponent(avgredLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(maxLabel)
+                            .addComponent(avgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(redmaxOutput)
                             .addComponent(redavgOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)))
                     .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addComponent(minredLabel)
+                        .addComponent(minLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(redLabel)
                             .addComponent(redminOutput, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statsPanelLayout.createSequentialGroup()
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(maxLabel1)
+                            .addComponent(avgLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bluemaxOutput)
+                            .addComponent(blueavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addComponent(minLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(blueLabel)
+                            .addComponent(blueminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statsPanelLayout.createSequentialGroup()
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(maxLabel2)
+                            .addComponent(avgLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(greenmaxOutput)
+                            .addComponent(greenavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addComponent(minLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(greenLabel)
+                            .addComponent(greenminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         statsPanelLayout.setVerticalGroup(
             statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(redLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(minredLabel)
-                    .addComponent(redminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(avgredLabel)
-                    .addComponent(redavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(maxredLabel)
-                    .addComponent(redmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addComponent(greenLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(minLabel2)
+                            .addComponent(greenminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(avgLabel2)
+                            .addComponent(greenavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maxLabel2)
+                            .addComponent(greenmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addComponent(blueLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(minLabel1)
+                            .addComponent(blueminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(avgLabel1)
+                            .addComponent(blueavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maxLabel1)
+                            .addComponent(bluemaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addComponent(redLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(minLabel)
+                            .addComponent(redminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(avgLabel)
+                            .addComponent(redavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maxLabel)
+                            .addComponent(redmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -327,25 +412,65 @@ public class ImageStatsUI extends javax.swing.JFrame {
     }
    
   
-    public BufferedImage createImage(Component component){
+    private BufferedImage createImage(Component component){
             BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
             Graphics g2d =  img.getGraphics();
             component.paintAll(g2d);
             return img;
     }
     
+    private void updateValues(){
+        BufferedImage subSet = createImage(scrollPane);
+        ImageStats is = new ImageStats();
+        is.calculateStats(ImageStats.toMat(subSet));
+                    
+        int[] max = is.getMax();
+        int[] min = is.getMin();            
+        int[] avg = is.getAverage();
+                
+        redmaxOutput.setText(String.valueOf(max[0]));
+        redminOutput.setText(String.valueOf(min[0]));
+        redavgOutput.setText(String.valueOf(avg[0]));
+        
+        bluemaxOutput.setText(String.valueOf(max[2]));
+        blueminOutput.setText(String.valueOf(min[2]));
+        blueavgOutput.setText(String.valueOf(avg[2]));
+        
+        greenmaxOutput.setText(String.valueOf(max[1]));
+        greenminOutput.setText(String.valueOf(min[1]));
+        greenavgOutput.setText(String.valueOf(avg[1]));
+
+    }
+    
+    
+    
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel authors;
-    private javax.swing.JLabel avgredLabel;
+    private javax.swing.JLabel avgLabel;
+    private javax.swing.JLabel avgLabel1;
+    private javax.swing.JLabel avgLabel2;
+    private javax.swing.JLabel blueLabel;
+    private javax.swing.JTextField blueavgOutput;
+    private javax.swing.JTextField bluemaxOutput;
+    private javax.swing.JTextField blueminOutput;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JLabel greenLabel;
+    private javax.swing.JTextField greenavgOutput;
+    private javax.swing.JTextField greenmaxOutput;
+    private javax.swing.JTextField greenminOutput;
     private javax.swing.JLabel height;
     private ui.ImagePanel imagePanel;
-    private javax.swing.JLabel maxredLabel;
+    private javax.swing.JLabel maxLabel;
+    private javax.swing.JLabel maxLabel1;
+    private javax.swing.JLabel maxLabel2;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JLabel minredLabel;
+    private javax.swing.JLabel minLabel;
+    private javax.swing.JLabel minLabel1;
+    private javax.swing.JLabel minLabel2;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JLabel redLabel;
     private javax.swing.JTextField redavgOutput;

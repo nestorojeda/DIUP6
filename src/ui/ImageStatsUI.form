@@ -132,8 +132,8 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="maxredLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="avgredLabel" max="32767" attributes="0"/>
+                              <Component id="maxLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="avgLabel" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -142,11 +142,55 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="minredLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="minLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="redLabel" min="-2" max="-2" attributes="0"/>
                               <Component id="redminOutput" pref="39" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="maxLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="avgLabel1" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="bluemaxOutput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="blueavgOutput" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="minLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="blueLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="blueminOutput" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="maxLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="avgLabel2" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="greenmaxOutput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="greenavgOutput" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="minLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="greenLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="greenminOutput" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -158,21 +202,61 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="redLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="minredLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="redminOutput" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="avgredLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="redavgOutput" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="maxredLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="redmaxOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="greenLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="minLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="greenminOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="avgLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="greenavgOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="maxLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="greenmaxOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="blueLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="minLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="blueminOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="avgLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="blueavgOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="maxLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bluemaxOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="redLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="minLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="redminOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="avgLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="redavgOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="maxLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="redmaxOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
@@ -185,17 +269,17 @@
             <Property name="text" type="java.lang.String" value="Rojo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="minredLabel">
+        <Component class="javax.swing.JLabel" name="minLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Min."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="maxredLabel">
+        <Component class="javax.swing.JLabel" name="maxLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Max."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="avgredLabel">
+        <Component class="javax.swing.JLabel" name="avgLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Avg."/>
           </Properties>
@@ -213,6 +297,76 @@
         <Component class="javax.swing.JTextField" name="redmaxOutput">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="blueLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Azul"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="blueminOutput">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="blueavgOutput">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="bluemaxOutput">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="maxLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Max."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="avgLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Avg."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="minLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Min."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="greenLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Verde"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="greenminOutput">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="greenavgOutput">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="greenmaxOutput">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="maxLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Max."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="avgLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Avg."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="minLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Min."/>
           </Properties>
         </Component>
       </SubComponents>
