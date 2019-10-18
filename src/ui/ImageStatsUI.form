@@ -21,6 +21,21 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="debugMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Debug"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="bufferedImageDemoMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buffered Image Demo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bufferedImageDemoMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -51,13 +66,10 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrollPane" pref="780" max="32767" attributes="0"/>
                   <Component id="statsPanel" max="32767" attributes="0"/>
+                  <Component id="scrollPane" alignment="1" pref="866" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="width" min="-2" pref="133" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="height" min="-2" pref="133" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="authors" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -68,17 +80,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="statsPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="scrollPane" min="-2" pref="409" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="scrollPane" pref="574" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="authors" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="width" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="height" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="authors" min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -194,6 +201,10 @@
                           </Group>
                       </Group>
                   </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="width" min="-2" pref="133" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="height" min="-2" pref="133" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -209,6 +220,8 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="minLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="greenminOutput" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="height" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="width" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -369,21 +382,21 @@
             <Property name="text" type="java.lang.String" value="Min."/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="height">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Altura:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="width">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Anchura"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="authors">
       <Properties>
         <Property name="text" type="java.lang.String" value="Daniel Delgado Perera y N&#xe9;stor Ojeda Gonz&#xe1;lez"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="width">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Anchura"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="height">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Altura:"/>
       </Properties>
     </Component>
   </SubComponents>

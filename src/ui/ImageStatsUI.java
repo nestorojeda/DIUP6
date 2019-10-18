@@ -9,18 +9,21 @@ package ui;
 import core.ImageStats;
 import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.swing.CellRendererPane;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -48,28 +51,23 @@ public class ImageStatsUI extends javax.swing.JFrame {
             }
         });
         
-   
+        scrollPane.getViewport().addChangeListener((ChangeEvent e) -> {
+            System.out.println("Log: Detectado cambio en el Viewport" + e.toString());
+            if(loaded) updateValues();
+        });
         
-        scrollPane.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener(){
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                System.out.println("Log: Detectado cambio horizontal");
-                if(loaded){
-                    updateValues();
-                }                              
-            }
+        
+        scrollPane.getHorizontalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
+            System.out.println("Log: Detectado cambio horizontal");
+            if(loaded) updateValues();                              
             
         });
         
-        scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                System.out.println("Log: Detectado cambio vertical");
-                if(loaded){
-                    updateValues();
 
-                }
-            }
+        scrollPane.getVerticalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
+            System.out.println("Log: Detectado cambio vertical");
+            if(loaded) updateValues();
+            
         });
         
     }
@@ -108,12 +106,14 @@ public class ImageStatsUI extends javax.swing.JFrame {
         maxLabel2 = new javax.swing.JLabel();
         avgLabel2 = new javax.swing.JLabel();
         minLabel2 = new javax.swing.JLabel();
-        authors = new javax.swing.JLabel();
-        width = new javax.swing.JLabel();
         height = new javax.swing.JLabel();
+        width = new javax.swing.JLabel();
+        authors = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
+        debugMenu = new javax.swing.JMenu();
+        bufferedImageDemoMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Estadísticas de imagen");
@@ -181,6 +181,10 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         minLabel2.setText("Min.");
 
+        height.setText("Altura:");
+
+        width.setText("Anchura");
+
         javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
         statsPanel.setLayout(statsPanelLayout);
         statsPanelLayout.setHorizontalGroup(
@@ -234,6 +238,10 @@ public class ImageStatsUI extends javax.swing.JFrame {
                         .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(greenLabel)
                             .addComponent(greenminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(width, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         statsPanelLayout.setVerticalGroup(
@@ -246,7 +254,9 @@ public class ImageStatsUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(minLabel2)
-                            .addComponent(greenminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(greenminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(height)
+                            .addComponent(width))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(avgLabel2)
@@ -288,10 +298,6 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         authors.setText("Daniel Delgado Perera y Néstor Ojeda González");
 
-        width.setText("Anchura");
-
-        height.setText("Altura:");
-
         fileMenu.setText("Archivo");
 
         openMenuItem.setText("Abrir");
@@ -304,6 +310,18 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
+        debugMenu.setText("Debug");
+
+        bufferedImageDemoMenuItem.setText("Buffered Image Demo");
+        bufferedImageDemoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bufferedImageDemoMenuItemActionPerformed(evt);
+            }
+        });
+        debugMenu.add(bufferedImageDemoMenuItem);
+
+        menuBar.add(debugMenu);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,29 +331,22 @@ public class ImageStatsUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addComponent(statsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(width, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(authors)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(statsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(authors)
-                    .addComponent(width)
-                    .addComponent(height))
-                .addGap(5, 5, 5))
+                .addComponent(authors, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -356,7 +367,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
                 loaded = true;
                 width.setText("Anchura: " + String.valueOf(imagePanel.getImageWidth()));
                 height.setText("Altura: " + String.valueOf(imagePanel.getImageHeight()));
-
+                updateValues();
                 this.pack();
             }
         } else {
@@ -364,6 +375,24 @@ public class ImageStatsUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
 
+    private void bufferedImageDemoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bufferedImageDemoMenuItemActionPerformed
+        // TODO add your handling code here:
+        bufferedImageDialog();
+        
+    }//GEN-LAST:event_bufferedImageDemoMenuItemActionPerformed
+
+    
+    /*
+    Debug function
+    */
+    public void bufferedImageDialog(){
+        BufferedImage image = createImage(scrollPane.getViewport());
+        JLabel picLabel = new JLabel(new ImageIcon(image));
+        JOptionPane.showMessageDialog(null, picLabel, "About", JOptionPane.PLAIN_MESSAGE, null);
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -413,16 +442,19 @@ public class ImageStatsUI extends javax.swing.JFrame {
    
   
     private BufferedImage createImage(Component component){
-            BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+            BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
             Graphics g2d =  img.getGraphics();
             component.paintAll(g2d);
             return img;
     }
     
     private void updateValues(){
-        BufferedImage subSet = createImage(scrollPane);
+        
+        BufferedImage subSet = createImage(scrollPane.getViewport());
         ImageStats is = new ImageStats();
-        is.calculateStats(ImageStats.toMat(subSet));
+        
+        is.calculateStats(ImageStats.bufferedImageToMat(subSet));
+        
                     
         int[] max = is.getMax();
         int[] min = is.getMin();            
@@ -439,13 +471,10 @@ public class ImageStatsUI extends javax.swing.JFrame {
         greenmaxOutput.setText(String.valueOf(max[1]));
         greenminOutput.setText(String.valueOf(min[1]));
         greenavgOutput.setText(String.valueOf(avg[1]));
+        
+        System.out.println("Log: valores modificados");
 
     }
-    
-    
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel authors;
@@ -456,6 +485,8 @@ public class ImageStatsUI extends javax.swing.JFrame {
     private javax.swing.JTextField blueavgOutput;
     private javax.swing.JTextField bluemaxOutput;
     private javax.swing.JTextField blueminOutput;
+    private javax.swing.JMenuItem bufferedImageDemoMenuItem;
+    private javax.swing.JMenu debugMenu;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JLabel greenLabel;
