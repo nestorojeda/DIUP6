@@ -21,9 +21,7 @@ import org.opencv.highgui.HighGui;
 
 public class ImageStats {
     
-    private static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_RESET = "\u001B[0m";
-    
+   
 
     private final int BLUE = 0;
     private final int GREEN = 1;
@@ -66,7 +64,7 @@ public class ImageStats {
               {
                   data[i*3] = (byte) ((dataBuff[i] >> 16) & 0xFF);
                   data[i*3 + 1] = (byte) ((dataBuff[i] >> 8) & 0xFF);
-                  data[i*3 + 2] = (byte) ((dataBuff[i] >> 0) & 0xFF);
+                  data[i*3 + 2] = (byte) ((dataBuff[i]) & 0xFF);
               }
           }
           else
@@ -78,7 +76,7 @@ public class ImageStats {
               {
                 r = (byte) ((dataBuff[i] >> 16) & 0xFF);
                 g = (byte) ((dataBuff[i] >> 8) & 0xFF);
-                b = (byte) ((dataBuff[i] >> 0) & 0xFF);
+                b = (byte) ((dataBuff[i]) & 0xFF);
                 data[i] = (byte)((0.21 * r) + (0.71 * g) + (0.07 * b)); //luminosity
               }
            }
