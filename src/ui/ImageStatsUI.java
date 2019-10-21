@@ -193,7 +193,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         authors.setText("Daniel Delgado Perera y Néstor Ojeda González");
 
-        width.setText("Anchura");
+        width.setText("Anchura:");
 
         height.setText("Altura:");
 

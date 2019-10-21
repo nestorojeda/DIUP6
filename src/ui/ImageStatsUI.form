@@ -246,7 +246,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="width">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Anchura"/>
+        <Property name="text" type="java.lang.String" value="Anchura:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="height">
