@@ -108,6 +108,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
+        exitMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Estadísticas de imagen");
@@ -144,11 +145,6 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         greenmaxOutput.setEditable(false);
         greenmaxOutput.setMaximumSize(new java.awt.Dimension(6, 20));
-        greenmaxOutput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                greenmaxOutputActionPerformed(evt);
-            }
-        });
 
         maxLabel2.setText("Max.");
 
@@ -207,11 +203,6 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         redminOutput.setEditable(false);
         redminOutput.setMaximumSize(new java.awt.Dimension(6, 20));
-        redminOutput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                redminOutputActionPerformed(evt);
-            }
-        });
 
         redavgOutput.setEditable(false);
         redavgOutput.setMaximumSize(new java.awt.Dimension(6, 20));
@@ -320,6 +311,14 @@ public class ImageStatsUI extends javax.swing.JFrame {
         });
         fileMenu.add(openMenuItem);
 
+        exitMenuItem.setText("Salir");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(exitMenuItem);
+
         menuBar.add(fileMenu);
 
         setJMenuBar(menuBar);
@@ -359,8 +358,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(blueStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(greenStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(greenStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -394,13 +392,13 @@ public class ImageStatsUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
 
-    private void redminOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redminOutputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_redminOutputActionPerformed
-
-    private void greenmaxOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenmaxOutputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_greenmaxOutputActionPerformed
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        int confirmed = JOptionPane.showConfirmDialog(null, "¿Desea cerrar el programa?", "Cerrar",JOptionPane.YES_NO_OPTION);
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }else{
+                }
+    }//GEN-LAST:event_exitMenuItemActionPerformed
 
     
     /*
@@ -509,6 +507,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
     private javax.swing.JTextField blueavgOutput;
     private javax.swing.JTextField bluemaxOutput;
     private javax.swing.JTextField blueminOutput;
+    private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JPanel greenStatsPanel;
