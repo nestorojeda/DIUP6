@@ -8,6 +8,7 @@ package ui;
 
 import core.ImageStats;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.WindowAdapter;
@@ -80,22 +81,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
         fileChooser = new javax.swing.JFileChooser();
         scrollPane = new javax.swing.JScrollPane();
         imagePanel = new ui.ImagePanel();
-        statsPanel = new javax.swing.JPanel();
-        redLabel = new javax.swing.JLabel();
-        minLabel = new javax.swing.JLabel();
-        maxLabel = new javax.swing.JLabel();
-        avgLabel = new javax.swing.JLabel();
-        redminOutput = new javax.swing.JTextField();
-        redavgOutput = new javax.swing.JTextField();
-        redmaxOutput = new javax.swing.JTextField();
-        blueLabel = new javax.swing.JLabel();
-        blueminOutput = new javax.swing.JTextField();
-        blueavgOutput = new javax.swing.JTextField();
-        bluemaxOutput = new javax.swing.JTextField();
-        maxLabel1 = new javax.swing.JLabel();
-        avgLabel1 = new javax.swing.JLabel();
-        minLabel1 = new javax.swing.JLabel();
-        greenLabel = new javax.swing.JLabel();
+        greenStatsPanel = new javax.swing.JPanel();
         greenminOutput = new javax.swing.JTextField();
         greenavgOutput = new javax.swing.JTextField();
         greenmaxOutput = new javax.swing.JTextField();
@@ -105,6 +91,20 @@ public class ImageStatsUI extends javax.swing.JFrame {
         authors = new javax.swing.JLabel();
         width = new javax.swing.JLabel();
         height = new javax.swing.JLabel();
+        redStatsPanel = new javax.swing.JPanel();
+        minLabel = new javax.swing.JLabel();
+        avgLabel = new javax.swing.JLabel();
+        maxLabel = new javax.swing.JLabel();
+        redminOutput = new javax.swing.JTextField();
+        redavgOutput = new javax.swing.JTextField();
+        redmaxOutput = new javax.swing.JTextField();
+        blueStatsPanel = new javax.swing.JPanel();
+        blueminOutput = new javax.swing.JTextField();
+        blueavgOutput = new javax.swing.JTextField();
+        bluemaxOutput = new javax.swing.JTextField();
+        maxLabel1 = new javax.swing.JLabel();
+        avgLabel1 = new javax.swing.JLabel();
+        minLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -114,6 +114,7 @@ public class ImageStatsUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(600, 600));
 
         scrollPane.setToolTipText("");
+        scrollPane.setMinimumSize(new java.awt.Dimension(0, 0));
         scrollPane.setOpaque(false);
         scrollPane.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -132,158 +133,62 @@ public class ImageStatsUI extends javax.swing.JFrame {
 
         scrollPane.setViewportView(imagePanel);
 
-        statsPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        redLabel.setText("Rojo");
-
-        minLabel.setText("Min.");
-
-        maxLabel.setText("Max.");
-
-        avgLabel.setText("Avg.");
-
-        redminOutput.setEditable(false);
-        redminOutput.setEnabled(false);
-
-        redavgOutput.setEditable(false);
-        redavgOutput.setEnabled(false);
-
-        redmaxOutput.setEditable(false);
-        redmaxOutput.setEnabled(false);
-
-        blueLabel.setText("Azul");
-
-        blueminOutput.setEditable(false);
-        blueminOutput.setEnabled(false);
-
-        blueavgOutput.setEditable(false);
-        blueavgOutput.setEnabled(false);
-
-        bluemaxOutput.setEditable(false);
-        bluemaxOutput.setEnabled(false);
-
-        maxLabel1.setText("Max.");
-
-        avgLabel1.setText("Avg.");
-
-        minLabel1.setText("Min.");
-
-        greenLabel.setText("Verde");
+        greenStatsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Verde"));
+        greenStatsPanel.setToolTipText("Verde");
 
         greenminOutput.setEditable(false);
-        greenminOutput.setEnabled(false);
+        greenminOutput.setMaximumSize(new java.awt.Dimension(6, 20));
 
         greenavgOutput.setEditable(false);
-        greenavgOutput.setEnabled(false);
+        greenavgOutput.setMaximumSize(new java.awt.Dimension(6, 20));
 
         greenmaxOutput.setEditable(false);
-        greenmaxOutput.setEnabled(false);
+        greenmaxOutput.setMaximumSize(new java.awt.Dimension(6, 20));
+        greenmaxOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                greenmaxOutputActionPerformed(evt);
+            }
+        });
 
         maxLabel2.setText("Max.");
 
-        avgLabel2.setText("Avg.");
+        avgLabel2.setText("Media");
 
         minLabel2.setText("Min.");
 
-        javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
-        statsPanel.setLayout(statsPanelLayout);
-        statsPanelLayout.setHorizontalGroup(
-            statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(statsPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statsPanelLayout.createSequentialGroup()
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(maxLabel)
-                            .addComponent(avgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(redmaxOutput)
-                            .addComponent(redavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addComponent(minLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(redLabel)
-                            .addComponent(redminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statsPanelLayout.createSequentialGroup()
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(maxLabel1)
-                            .addComponent(avgLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bluemaxOutput)
-                            .addComponent(blueavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addComponent(minLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(blueLabel)
-                            .addComponent(blueminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(10, 10, 10)
-                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(maxLabel2)
-                            .addComponent(avgLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(greenavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(greenmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addComponent(minLabel2)
-                        .addGap(14, 14, 14)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(statsPanelLayout.createSequentialGroup()
-                                .addComponent(greenLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(greenminOutput))))
-                .addGap(20, 20, 20))
-        );
-        statsPanelLayout.setVerticalGroup(
-            statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(statsPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout greenStatsPanelLayout = new javax.swing.GroupLayout(greenStatsPanel);
+        greenStatsPanel.setLayout(greenStatsPanelLayout);
+        greenStatsPanelLayout.setHorizontalGroup(
+            greenStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(greenStatsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(blueLabel)
-                            .addComponent(greenLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(minLabel1)
-                            .addComponent(blueminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(minLabel2)
-                            .addComponent(greenminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(avgLabel1)
-                            .addComponent(blueavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(avgLabel2)
-                            .addComponent(greenavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(maxLabel1)
-                            .addComponent(bluemaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(maxLabel2)
-                            .addComponent(greenmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addComponent(redLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(minLabel)
-                            .addComponent(redminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(avgLabel)
-                            .addComponent(redavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(maxLabel)
-                            .addComponent(redmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(greenStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(avgLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxLabel2)
+                    .addComponent(minLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(greenStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(greenavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(greenmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(greenminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        greenStatsPanelLayout.setVerticalGroup(
+            greenStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(greenStatsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(greenStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(minLabel2)
+                    .addComponent(greenminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(greenStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(greenavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(avgLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(greenStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(greenmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         authors.setText("Daniel Delgado Perera y Néstor Ojeda González");
@@ -291,6 +196,119 @@ public class ImageStatsUI extends javax.swing.JFrame {
         width.setText("Anchura");
 
         height.setText("Altura:");
+
+        redStatsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Rojo"));
+
+        minLabel.setText("Min.");
+
+        avgLabel.setText("Media");
+
+        maxLabel.setText("Max.");
+
+        redminOutput.setEditable(false);
+        redminOutput.setMaximumSize(new java.awt.Dimension(6, 20));
+        redminOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redminOutputActionPerformed(evt);
+            }
+        });
+
+        redavgOutput.setEditable(false);
+        redavgOutput.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        redmaxOutput.setEditable(false);
+        redmaxOutput.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        javax.swing.GroupLayout redStatsPanelLayout = new javax.swing.GroupLayout(redStatsPanel);
+        redStatsPanel.setLayout(redStatsPanelLayout);
+        redStatsPanelLayout.setHorizontalGroup(
+            redStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(redStatsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(redStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(redStatsPanelLayout.createSequentialGroup()
+                        .addGroup(redStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(avgLabel)
+                            .addComponent(maxLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(redStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(redavgOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(redmaxOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(redStatsPanelLayout.createSequentialGroup()
+                        .addComponent(minLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(redminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        redStatsPanelLayout.setVerticalGroup(
+            redStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(redStatsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(redStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(minLabel)
+                    .addComponent(redminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(redStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(avgLabel)
+                    .addComponent(redavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(redStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(redmaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        blueStatsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Azul"));
+
+        blueminOutput.setEditable(false);
+        blueminOutput.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        blueavgOutput.setEditable(false);
+        blueavgOutput.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        bluemaxOutput.setEditable(false);
+        bluemaxOutput.setMaximumSize(new java.awt.Dimension(6, 20));
+
+        maxLabel1.setText("Max.");
+
+        avgLabel1.setText("Media");
+
+        minLabel1.setText("Min.");
+
+        javax.swing.GroupLayout blueStatsPanelLayout = new javax.swing.GroupLayout(blueStatsPanel);
+        blueStatsPanel.setLayout(blueStatsPanelLayout);
+        blueStatsPanelLayout.setHorizontalGroup(
+            blueStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blueStatsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(blueStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(minLabel1)
+                    .addComponent(avgLabel1)
+                    .addComponent(maxLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(blueStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(blueavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blueminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bluemaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        blueStatsPanelLayout.setVerticalGroup(
+            blueStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blueStatsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(blueStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(blueminOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(blueStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(blueavgOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(avgLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(blueStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maxLabel1)
+                    .addComponent(bluemaxOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         fileMenu.setText("Archivo");
 
@@ -311,34 +329,44 @@ public class ImageStatsUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(width, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(width, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(greenStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(blueStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(redStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(authors))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 292, Short.MAX_VALUE)
-                        .addComponent(statsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 292, Short.MAX_VALUE)))
+                        .addComponent(authors)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(statsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(redStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(blueStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(greenStatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(authors, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(width)
-                    .addComponent(height))
-                .addContainerGap())
+                    .addComponent(height)
+                    .addComponent(width)))
         );
 
         pack();
@@ -362,9 +390,17 @@ public class ImageStatsUI extends javax.swing.JFrame {
                 this.pack();
             }
         } else {
-            System.out.println("Open command cancelled by user.");
+            System.out.println("Log: Cancelada operación de abrir archivo");
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
+
+    private void redminOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redminOutputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_redminOutputActionPerformed
+
+    private void greenmaxOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenmaxOutputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_greenmaxOutputActionPerformed
 
     
     /*
@@ -444,20 +480,20 @@ public class ImageStatsUI extends javax.swing.JFrame {
         int[] min = is.getMin();            
         int[] avg = is.getAverage();
                 
-        redmaxOutput.setText(String.valueOf(max[0]));
-        redminOutput.setText(String.valueOf(min[0]));
-        redavgOutput.setText(String.valueOf(avg[0]));
+        redmaxOutput.setText(String.valueOf(max[2]));
+        redminOutput.setText(String.valueOf(min[2]));
+        redavgOutput.setText(String.valueOf(avg[2]));
         
         greenmaxOutput.setText(String.valueOf(max[1]));
         greenminOutput.setText(String.valueOf(min[1]));
         greenavgOutput.setText(String.valueOf(avg[1]));
         
-        bluemaxOutput.setText(String.valueOf(max[2]));
-        blueminOutput.setText(String.valueOf(min[2]));
-        blueavgOutput.setText(String.valueOf(avg[2]));
+        bluemaxOutput.setText(String.valueOf(max[0]));
+        blueminOutput.setText(String.valueOf(min[0]));
+        blueavgOutput.setText(String.valueOf(avg[0]));
         
         height.setText(String.valueOf("Altura: " + subSet.getHeight()));
-        width.setText(String.valueOf("Anchura" + subSet.getWidth()));
+        width.setText(String.valueOf("Anchura:" + subSet.getWidth()));
 
         
         System.out.println("Log: valores modificados");
@@ -469,13 +505,13 @@ public class ImageStatsUI extends javax.swing.JFrame {
     private javax.swing.JLabel avgLabel;
     private javax.swing.JLabel avgLabel1;
     private javax.swing.JLabel avgLabel2;
-    private javax.swing.JLabel blueLabel;
+    private javax.swing.JPanel blueStatsPanel;
     private javax.swing.JTextField blueavgOutput;
     private javax.swing.JTextField bluemaxOutput;
     private javax.swing.JTextField blueminOutput;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JLabel greenLabel;
+    private javax.swing.JPanel greenStatsPanel;
     private javax.swing.JTextField greenavgOutput;
     private javax.swing.JTextField greenmaxOutput;
     private javax.swing.JTextField greenminOutput;
@@ -489,12 +525,11 @@ public class ImageStatsUI extends javax.swing.JFrame {
     private javax.swing.JLabel minLabel1;
     private javax.swing.JLabel minLabel2;
     private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JLabel redLabel;
+    private javax.swing.JPanel redStatsPanel;
     private javax.swing.JTextField redavgOutput;
     private javax.swing.JTextField redmaxOutput;
     private javax.swing.JTextField redminOutput;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JPanel statsPanel;
     private javax.swing.JLabel width;
     // End of variables declaration//GEN-END:variables
 
